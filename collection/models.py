@@ -1,8 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class entry(models.Model):
-    id = models.PositiveIntegerField(primary_key=True)
+class Entry(models.Model):
     item = models.CharField(max_length=100)
     count = models.PositiveIntegerField()
     author = models.CharField(max_length=255)
