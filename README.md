@@ -1,1 +1,1 @@
-Django postgre nginx database thing for GoTE.py
+Remote database for Spirit Logger. Django, PostgreSQL, Nginx, Gunicorn.
