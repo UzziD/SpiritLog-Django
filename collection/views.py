@@ -3,5 +3,5 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     return HttpResponse("The item collection goes here")
-def addEntry(request):
-    return HttpResponse(str(request))
+def addEntry(request, entry):
+    return HttpResponse(str(entry))
