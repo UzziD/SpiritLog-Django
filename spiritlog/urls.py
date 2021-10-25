@@ -16,9 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import collection
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('collection/', include(collection.urls))
+    path('collection/', include('collection.urls'))
 ]
