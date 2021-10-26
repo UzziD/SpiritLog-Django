@@ -1,14 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from .models import Entry
+from .forms import EntryForm
 # Create your views here.
+
 def index(request):
     allEntries = Entry.objects.all()
     output = ', '.join([e.__str__ for e in allEntries])
     return HttpResponse(output)
 
-def addEntry(request, userEntry):
-    #clean = cleaner(user_entry)
-    itemizedEntry = userEntry.split(',')
-    entrant = Entry.objects.create(item = itemizedEntry[0], count = itemizedEntry[1], author = itemizedEntry[2])
-    return HttpResponse(userEntry)
+def addEntry(request):
+    if request.method == 'Post':
+        form = EntryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/collection/')
+    else:
+        form = EntryForm()
+    return render(request, 'entryform.html', {'form', form})
