@@ -16,4 +16,4 @@ class RareDropTableItems(models.Model):
 
     @property
     def __str__(self):
-        return "%s" % (self.itemAlias)
+        return "%s" % (self.item)
