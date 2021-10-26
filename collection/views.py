@@ -4,7 +4,8 @@ from .models import Entry
 # Create your views here.
 def index(request):
     allEntries = Entry.objects.all()
-    output = '\n'.join([e for e in allEntries])
+    Entry.__str__()
+    output = '\n'.join([e.__str__() for e in allEntries])
     return HttpResponse(output)
 
 def addEntry(request, userEntry):
