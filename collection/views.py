@@ -11,7 +11,7 @@ def index(request):
     return HttpResponse(output)
 
 def addEntry(request):
-    if request.method == 'Post':
+    if request.method == 'POST':
         form = EntryForm(request.POST)
         if form.is_valid():
             form.save()
