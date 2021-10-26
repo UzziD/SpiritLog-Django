@@ -17,7 +17,7 @@ SEC_KEY = os.getenv('SEC_KEY')
 HOST_IP = os.getenv('HOST_IP')
 USER = os.getenv('USER')
 PWORD = os.getenv('PWORD')
-WEBSITE = os.getenv('WEBSITE') 
+#WEBSITE = os.getenv('WEBSITE') 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +32,7 @@ SECRET_KEY = SEC_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [HOST_IP, WEBSITE, 'localhost']
+ALLOWED_HOSTS = [HOST_IP, '.uzzi.ca', 'localhost']
 
 
 # Application definition
