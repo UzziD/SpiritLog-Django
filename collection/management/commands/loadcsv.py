@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = "Preloads db with data from csv"
 
     def add_arguments(self, parser):
-        parser.add_arguments('path', type='str', help='Indicates the path to the csv file')
+        parser.add_argument('path', type='str', help='Indicates the path to the csv file')
 
     def handle(self, *args, **options):
         path = options['path']
