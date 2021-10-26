@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from .models import Entry
 # Create your views here.
 def index(request):
-    return HttpResponse(Entry.objects.all())
+    allEntries = Entry.objects.all()
+    output = '\n'.join([e for e in allEntries])
+    return HttpResponse(output)
 
 def addEntry(request, userEntry):
     #clean = cleaner(user_entry)
