@@ -18,4 +18,4 @@ def addEntry(request):
             return HttpResponseRedirect('/collection/')
     else:
         form = EntryForm()
-    return render(request, 'addentry.html', {'form', form})
+    return render(request, 'addentry.html', {'form': form})
