@@ -15,12 +15,14 @@ def addEntry(request):
     if request.method == 'POST':
         form = EntryForm(request.POST)
         if form.is_valid():
-            item = RareDropTableItems.objects.filter(itemAlias=form.item).first()  #grab item name based on user's input item
-            itemEntry = form.save(commit=False)                     #save the non validated form to change to proper item name
-            itemEntry.item = item
-            itemEntry.save()
-            return HttpResponseRedirect('/collection/')
-
+            try:
+                item = RareDropTableItems.objects.get(pk=form['item'])  #grab item name based on user's input item
+                itemEntry = form.save(commit=False)                     #save the non validated form to change to proper item name
+                itemEntry.item = item
+                itemEntry.save()
+                return HttpResponseRedirect('/collection/')
+            except Exception as e:
+                return HttpResponse(form['item'] + " returned error: " + e)
     else:
         form = EntryForm()
     return render(request, 'addentry.html', {'form': form})
