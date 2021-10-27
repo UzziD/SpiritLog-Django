@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.http import HttpResponseRedirect
 from .models import Entry
 from .models import RareDropTableItems
@@ -24,7 +24,7 @@ def addEntry(request):
                 itemEntry.save()
                 return HttpResponseRedirect('/collection/')
             except Exception as e:
-                return HttpResponse(str(form['item'].value()) + " returned error: {}".format(e))
+                return HttpResponseBadRequest(str(form['item'].value()) + " returned error: {}".format(e))
     else:
         form = EntryForm()
     return render(request, 'addentry.html', {'form': form})
