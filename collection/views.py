@@ -10,7 +10,7 @@ def index(request):
     allEntries = Entry.objects.all()
     #output = ', '.join([e.__str__() for e in allEntries])
     data = serializers.serialize("json", Entry.objects.all())
-    return JsonResponse(data,safe=False)
+    return HttpResponse(data,content_type="application/json")
 
 def addEntry(request):
     if request.method == 'POST':
