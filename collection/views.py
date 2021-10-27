@@ -3,12 +3,14 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadReque
 from .models import Entry
 from .models import RareDropTableItems
 from .forms import EntryForm
+from django.core import serializers
 # Create your views here.
 
 def index(request):
     allEntries = Entry.objects.all()
-    output = ', '.join([e.__str__() for e in allEntries])
-    return HttpResponse(output)
+    #output = ', '.join([e.__str__() for e in allEntries])
+    data = serializers.serialize("json", Entry.objects.all())
+    return HttpResponse(data)
 
 def addEntry(request):
     if request.method == 'POST':
