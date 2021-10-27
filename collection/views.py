@@ -9,8 +9,8 @@ from django.core import serializers
 def index(request):
     allEntries = Entry.objects.all()
     #output = ', '.join([e.__str__() for e in allEntries])
-    data = serializers.serialize("jsonl", Entry.objects.all())
-    return JsonResponse(data)
+    data = serializers.serialize("json", Entry.objects.all())
+    return JsonResponse(data,safe=False)
 
 def addEntry(request):
     if request.method == 'POST':
