@@ -16,9 +16,7 @@ def addEntry(request):
         if form.is_valid():
             try:
                 formItem = form['item'].value()
-                RDTItem = RareDropTableItems.objects.get(itemAlias=formItem)  #grab item name based on user's input item
-                return HttpResponse(str(RDTItem.item))
-                item = getattr(RDTItem, 'item')
+                item = RareDropTableItems.objects.get(itemAlias=formItem).item  #grab item name based on user's input item
                 itemEntry = form.save(commit=False)                     #save the non validated form to change to proper item name
                 itemEntry.item = item
                 itemEntry.save()
