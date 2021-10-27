@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
-from django.http import HttpResponseRedirect
 from .models import Entry
 from .models import RareDropTableItems
 from .forms import EntryForm
@@ -18,6 +17,7 @@ def addEntry(request):
             try:
                 formItem = form['item'].value()
                 RDTItem = RareDropTableItems.objects.get(itemAlias=formItem)  #grab item name based on user's input item
+                return HttpResponse(str(RDTItem.item))
                 item = getattr(RDTItem, 'item')
                 itemEntry = form.save(commit=False)                     #save the non validated form to change to proper item name
                 itemEntry.item = item
