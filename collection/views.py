@@ -16,13 +16,15 @@ def addEntry(request):
         form = EntryForm(request.POST)
         if form.is_valid():
             try:
-                item = RareDropTableItems.objects.get(pk=form['item'].value())  #grab item name based on user's input item
+                formItem = form['item'].value()
+                RDTItem = RareDropTableItems.objects.get(itemAlias=formItem)  #grab item name based on user's input item
+                item = getattr(RDTItem, 'item')
                 itemEntry = form.save(commit=False)                     #save the non validated form to change to proper item name
                 itemEntry.item = item
                 itemEntry.save()
                 return HttpResponseRedirect('/collection/')
             except Exception as e:
-                return HttpResponse(str(form['item'].value()) + " returned error: {}".format(e.with_traceback()))
+                return HttpResponse(str(form['item'].value()) + " returned error: {}".format(e))
     else:
         form = EntryForm()
     return render(request, 'addentry.html', {'form': form})
