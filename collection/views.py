@@ -22,7 +22,7 @@ def addEntry(request):
                 itemEntry.save()
                 return HttpResponseRedirect('/collection/')
             except Exception as e:
-                return HttpResponse(str(form['item'].value()) + " returned error: " + e)
+                return HttpResponse(str(form['item'].value()) + " returned error: {}".format(e))
     else:
         form = EntryForm()
     return render(request, 'addentry.html', {'form': form})
