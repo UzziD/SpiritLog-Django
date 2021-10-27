@@ -9,7 +9,7 @@ from django.core import serializers
 def index(request):
     allEntries = Entry.objects.all()
     #output = ', '.join([e.__str__() for e in allEntries])
-    data = serializers.serialize("json", Entry.objects.all())
+    data = serializers.serialize("jsonl", Entry.objects.all())
     return HttpResponse(data)
 
 def addEntry(request):
