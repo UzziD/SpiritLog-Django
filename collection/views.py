@@ -8,7 +8,7 @@ from .forms import EntryForm
 
 def index(request):
     allEntries = Entry.objects.all()
-    output = ', '.join([e.__str__ for e in allEntries])
+    output = ', '.join([e.__str__() for e in allEntries])
     return HttpResponse(output)
 
 def addEntry(request):
