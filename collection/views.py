@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from .models import Entry
 from .models import RareDropTableItems
 from .forms import EntryForm
@@ -10,7 +10,7 @@ def index(request):
     allEntries = Entry.objects.all()
     #output = ', '.join([e.__str__() for e in allEntries])
     data = serializers.serialize("jsonl", Entry.objects.all())
-    return HttpResponse(data)
+    return JsonResponse(data)
 
 def addEntry(request):
     if request.method == 'POST':
